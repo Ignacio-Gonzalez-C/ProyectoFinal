@@ -13,6 +13,7 @@ replacements = {
 }
 
 def string_plot_func(string):
+    original_name = string
     #Se limpian la entrada para ser consistente 
     for old, new in replacements.items():
         string = string.replace(old, new)
@@ -20,11 +21,12 @@ def string_plot_func(string):
     def func(x):
         return eval(string)
 
-    x=range(-20,20)
+    x= np.arange(-10, 10, 0.1)
 
     plt.plot(x, [func(i) for i in x])
+    plt.title(original_name)
     plt.axhline(0, color="black")
     plt.axvline(0, color="black")
-    plt.show()
-
-string_plot_func("y = 2*x + 1")
+    plt.savefig('plot.png', bbox_incehs='thigth')
+    plt.close()
+    print("Gráfico creado")
