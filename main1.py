@@ -1,30 +1,32 @@
 import telebot
-
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.mlab as mlab
+import os
 bot = telebot.TeleBot("2140834086:AAEDss6nw-P3Cq7kdo2oaW-KxrfH7VOg9Y4")
 
-@bot.message_handler(commands=['start', 'help'])
-def send_welcome(message):
-	bot.reply_to(message, "Howdy, how are you doing?")
-
-#@bot.message_handler(func=lambda message: True)
-#def echo_all(message):
-	#bot.reply_to(message, message.text)
-        #bot.reply_to(message,"rola")
+@bot.message_handler(commands=["help"])
+def enviar(message):
+    bot.reply_to(message, "para hacer un histograma la sintaxis es la siguiente:histo=(dato1 dato2 dato3){bins}")
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
         normalizado=message.text.lower()
         if normalizado.count('histo')>0 :
-            #bot.reply_to(message,normalizado.split("=",1)[1])
-            #bot.reply_to(message,list1[1]+list1[2]) son strings
             s = normalizado
             s = s[s.find('(')+1:s.rfind(')')]
-            d = normalizado
-            d = d[d.find('[')+1:s.rfind(']')]
+            nbins = normalizado
+            nbins = nbins[nbins.find('{')+1:s.rfind('}')]
+            nbins = int(nbins)
             list1 = s.split(",")
-            list3 = d.split(",")
             list2 = [int(i) for i in list1]
-            bot.reply_to(message,list2[2]+list2[1])
-            bot.reply_to(message,list3[2]+list3[1])
+            plt.hist(list1, nbins, facecolor='blue', alpha=0.5, ec='black')
+            plt.savefig('histo.png')
+            bot.send_chat_action(message.chat.id, 'upload_photo')
+            img = open('histo.png', 'rb')
+            bot.send_photo(message.chat.id, img, reply_to_message_id=message.message_id)
+            img.close()
+            os.remove("histo.png")
+            plt.clf()
         else:
             bot.reply_to(message,"rola")
 bot.infinity_polling()
