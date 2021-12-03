@@ -1,3 +1,3 @@
 # ProyectoFinal
-# se implementa la funcion tortaplot() para el bot de telegram
-# sintaxis: tortaplot(dato1 dato2 dato3) 
+# Implementación de la funcionalidad para gráficos lineales.
+# Sintaxis: /lineainicio y 'x:nombreeje,datos' siendo los datos numéricos separados por comas.
