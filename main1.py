@@ -18,8 +18,9 @@ def echo_all(message):
             nbins = nbins[nbins.find('{')+1:s.rfind('}')]
             nbins = int(nbins)
             list1 = s.split(",")
-            list2 = [int(i) for i in list1]
-            plt.hist(list1, nbins, facecolor='blue', alpha=0.5, ec='black')
+            integer_map = map(int, list1)
+            integer_list = list(integer_map)
+            plt.hist(integer_list, nbins ,facecolor='blue', alpha=0.5, ec='black')
             plt.savefig('histo.png')
             bot.send_chat_action(message.chat.id, 'upload_photo')
             img = open('histo.png', 'rb')
@@ -27,6 +28,4 @@ def echo_all(message):
             img.close()
             os.remove("histo.png")
             plt.clf()
-        else:
-            bot.reply_to(message,"rola")
 bot.infinity_polling()
