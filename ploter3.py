@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.mlab as mlab
 import os
-bot = telebot.TeleBot("2140834086:AAEDss6nw-P3Cq7kdo2oaW-KxrfH7VOg9Y4")
+bot = telebot.TeleBot("TOKEN")
 
 @bot.message_handler(commands=["help"])
 def enviar(message):
