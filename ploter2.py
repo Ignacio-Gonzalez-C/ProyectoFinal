@@ -4,6 +4,7 @@ import telebot
 import numpy as np
 import matplotlib.pyplot as plt
 #matplotlib para efectos matematicos.
+#-----------------------------------------------------------
 
 #Datos iniciales, valores para grafico lineal:
 tipo = "line"
