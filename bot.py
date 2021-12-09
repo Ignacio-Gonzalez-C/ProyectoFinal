@@ -1,8 +1,7 @@
 import telebot
 import time
 import urllib
-from plotter import *
-#import matplotlib
+from ploter import *
 
 help_message = "Sintaxis de ejemplo 'y= 2*x+5'\nPuntos a seguir:\n \
     \r•Las funciones soportadas son seno (sin), coseno(cos), raiz cuadrada(sqrt) y exponencial(exp)\n \
