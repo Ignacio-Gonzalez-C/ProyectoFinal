@@ -20,7 +20,7 @@ x_datos = None
 y_datos = None
 titulo = ""
 
-bot = telebot.TeleBot("2136991575:AAHTOyeac5Id4PPOiK0wy7KX0oQlV6DILt0")
+bot = telebot.TeleBot("TOKEN")
 
 @bot.message_handler(commands=['lineainicio'])
 def inicio_linea(message):
