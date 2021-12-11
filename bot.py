@@ -9,10 +9,9 @@ import matplotlib.mlab as mlab
 import os
 import runpy
 
-help_message = "FUNCIONES:\n\
-1-Visualización de funciones simples:\n \
-    Sintaxis de ejemplo 'y= 2*x+5'\nPuntos a seguir:\n \
-    \r•Las funciones soportadas son seno (sin), coseno(cos), raiz cuadrada(sqrt) y exponencial(exp)"
+help_message = "Con este bot podrás realizar diferentes gráficos a partir de cuatro diferentes funcionalidades.\n\
+Para saber más de ellas se recomienda:\n\
+•/lineainicio\n•/histograma\n•/torta\n•/funcionsimple"
 
 tipo = "line"
 X = None
@@ -35,6 +34,24 @@ def inicio_linea(message):
 	bot.send_message(chat_id, "Un ejemplo sería 'X:Personas,4,5,6,7' y 'Y:Repositorios,1,2,3,4' ")									  
 	bot.send_message(chat_id, "Recuerda que se forman pares de puntos, por lo que si hay distinto número de datos en X e Y habrá un error.")							  
 	bot.send_message(chat_id, "Finalmente y con los datos guardados, escribe /lineaplot para graficar.")
+
+@bot.message_handler(commands=['histograma'])
+def histograma_info(message):
+	chat_id = message.chat.id
+	bot.send_message(chat_id, "Para hacer un histograma la sintaxis es la siguiente:\nhisto=(dato1, dato2, dato3){n°bins}")
+
+@bot.message_handler(commands=['torta'])
+def torta_info(message):
+	chat_id = message.chat.id
+	bot.send_message(chat_id, "Para utilizar ploteo de torta la sintaxis es la siguiente:\ntortaplot(dato1 dato2 dato3)")
+
+@bot.message_handler(commands=['funcionsimple'])
+def simple_info(message):
+	chat_id = message.chat.id
+	bot.send_message(chat_id, "Sintaxis de ejemplo 'y= 2*x+5'")
+	bot.send_message(chat_id, "Puntos a seguir:")
+	bot.send_message(chat_id, "\r•Las funciones soportadas son seno (sin), coseno(cos), raiz cuadrada(sqrt) y exponencial(exp)")
+	bot.send_message(chat_id, "\r•Cualquier función no soportada no mostrará el gráfico")
 
 #Valores de X
 @bot.message_handler(regexp=(r'x:'))
